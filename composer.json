@@ -1,0 +1,17 @@
+{
+  "name": "LuizFernandesOliveira/fic01siteledoc",
+  "authors": [
+    {
+      "name": "Luiz Fernandes de Oliveira",
+      "email": "luiz.fernandes@academico.ifrn.edu.br"
+    }
+  ],
+  "require": {
+    "phpmailer/phpmailer":"5.2.22"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ledoc\\": "vendor\\ledoc\\php-classes\\src"
+    }
+  }
+}
