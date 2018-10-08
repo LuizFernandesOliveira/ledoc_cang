@@ -15,6 +15,8 @@ $app->get('/estagios_docente', 'App\Action\HomeAction:estagiosDocente');
 $app->get('/trabalhos', 'App\Action\HomeAction:trabalhos');
 $app->get('/projetos', 'App\Action\HomeAction:projetos');
 $app->get('/equipe', 'App\Action\HomeAction:equipe');
+$app->get('/admin/cadastro', 'App\Action\Admin\CadastroAction:cadastro');
+$app->post('/admin/cadastro', 'App\Action\Admin\CadastroAction:addUsuario');
 
 $app->group('/admin', function(){
 	$this->get('', 'App\Action\Admin\HomeAction:index');

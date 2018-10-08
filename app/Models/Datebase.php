@@ -7,14 +7,14 @@
  */
 
 namespace App\Models;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
-class Datebase extends Capsule
+use Illuminate\Database\Capsule\Manager;
+
+class Datebase extends Manager
 {
 
-    public function __construct()
-    {
-        $capsule = new Capsule;
+    public function __construct(){
+        $capsule = new Manager();
         $capsule->addConnection([
             'driver' => DBDRIVER,
             'host' => DBHOST,

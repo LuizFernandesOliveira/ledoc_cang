@@ -21,8 +21,21 @@ class CadastroAction extends Action
         $email      = strip_tags(filter_var($data['email'], FILTER_SANITIZE_STRING));
         $senha      = strip_tags(filter_var($data['senha'], FILTER_SANITIZE_STRING));
         $resenha    = strip_tags(filter_var($data['resenha'], FILTER_SANITIZE_STRING));
-        $adm        = strip_tags(filter_var($data['adm'], FILTER_SANITIZE_STRING));
+        $adm        = "nao";
 
         $add_usuario = Usuarios::addUsuario($matricula, $nome, $email, $senha, $resenha, $adm);
+
+        if(!$add_usuario){
+            $vars['erro'] = 'Voce não possui cadastro no sistema';
+            return $this->view->render($response, 'admin/login/cadastro.phtml', $vars);
+        }
+
+        $vars['sucesso'] = 'O CADASTRO FOI REALIZADO COM SUCESSO';
+        return $this->view->render($response, 'admin/login/cadastro.phtml', $vars);
+    }
+
+    public function cadastro($request, $response){
+        return $this->view->render($response, 'admin/login/cadastro.phtml');
+
     }
 }

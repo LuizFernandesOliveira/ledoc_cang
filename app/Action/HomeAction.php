@@ -50,4 +50,5 @@ class HomeAction extends Action
         return $this->view->render($response, 'index.phtml', $vars);
     }
 
+
 }
