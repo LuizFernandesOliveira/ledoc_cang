@@ -36,6 +36,6 @@ class CadastroAction extends Action
 
     public function cadastro($request, $response){
         return $this->view->render($response, 'admin/login/cadastro.phtml');
-
+        
     }
 }
