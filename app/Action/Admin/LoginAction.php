@@ -32,7 +32,8 @@ class LoginAction extends Action
 
         if ($email !== '' && $senha !== '') {
 
-            $user = DB::table('ledoc_usuario')->where('email', $email)->first();
+            $user = $this->db->prepare("SELECT * FROM `ledoc_usuario` WHERE `email` = ?, `senha` = ?");
+            $user->execute(array($email, $senha));
 
             if ($user->rowCount() > 0) {
 

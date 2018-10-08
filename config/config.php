@@ -6,20 +6,11 @@
  * Time: 11:06
  */
 
-$config = [
-    'settings' => [
-        'db' => [
-            // Eloquent configuration
-            'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'database'  => 'ledoc_cang',
-            'username'  => 'root',
-            'password'  => '',
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-        ],
-    ],
-];
+defined('DBDRIVER') or define('DBDRIVER', 'mysql');
+defined('DBHOST') or define('DBHOST', 'localhost');
+defined('DBNAME') or define('DBNAME', 'ledoc_cang');
+defined('DBUSER') or define('DBUSER', 'root');
+defined('DBPASS') or define('DBPASS', '');
+
 
 ?>

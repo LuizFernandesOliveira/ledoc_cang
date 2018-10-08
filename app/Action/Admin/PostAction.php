@@ -1,5 +1,5 @@
 <?php 
-/*
+
 namespace App\Action\Admin;
 
 use App\Action\Action;
@@ -98,5 +98,5 @@ class PostAction extends Action
         return $this->view->render($response, 'admin/index.phtml', $vars);
     	
     }
-}*/
+}
  ?>

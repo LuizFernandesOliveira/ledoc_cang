@@ -14,17 +14,12 @@ require_once(__DIR__."/vendor/autoload.php");
 require_once(__DIR__."/config/constants.php");
 require_once(__DIR__."/config/config.php");
 
-$app = new \Slim\App($config);
-
+$app = new \Slim\App();
 $container = $app->getContainer();
 $container['view'] = new \Slim\Views\PhpRenderer('resources/views/');
 
-$capsule = new Illuminate\Database\Capsule\Manager;
-$capsule->addConnection($container->get('settings')['db']);
-$capsule->bootEloquent();
-
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
+use App\Models\Datebase;
+new Datebase();
 
 require_once('app/routes.php');
 
