@@ -11,7 +11,9 @@ create table ledoc_usuario (
   email     varchar(40) not null,
   senha     varchar(20) not null,
   resenha   varchar(20) not null,
-  adm       varchar (3) not null
+  adm       varchar (3) not null,
+  updated_at timestamp,
+  created_at timestamp
 );
 INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm)value ('1234567', '','','','', 'sim');
 INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm)value ('1234568', '','','','', 'nao');

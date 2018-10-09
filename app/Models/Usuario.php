@@ -11,8 +11,17 @@ use \Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    protected $table = 'usuario';
-    protected $fillable = ['matricula', 'nome', 'email', 'senha', 'resenha', 'adm'];
+    protected $table = 'ledoc_usuario';
+
+    protected $fillable = [
+        'matricula',
+        'nome',
+        'email',
+        'senha',
+        'resenha',
+        'adm'
+    ];
+
 }
 
 ?>

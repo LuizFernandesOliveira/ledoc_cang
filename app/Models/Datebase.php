@@ -7,10 +7,9 @@
  */
 
 namespace App\Models;
-
 use Illuminate\Database\Capsule\Manager;
 
-class Datebase extends Manager
+class Datebase
 {
 
     public function __construct(){

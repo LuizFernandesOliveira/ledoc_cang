@@ -21,16 +21,16 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="bg-success">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
     <!--================================ JANELA MODAL PARA CADASTRO DO ADMINISTRADOR ======================================-->
 
     <div class="col-md-8 col-md-offset-2 thumbnail">
         <div class="thumbnail center-block">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times; SAIR</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">ÁREA DE CADASTRO</h4>
+                <a href="<?=PAF.DIR?>admin/login"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times; SAIR</span></button></a>
+                <h1 class="modal-title" id="exampleModalLabel">ÁREA DE CADASTRO</h1>
             </div>
             <div class="modal-header">
                 <?php if (isset($erro)): ?>
@@ -42,11 +42,11 @@
             </div>
             <div class="modal-header">
                 <div class="bg-danger">
-                    <h4>ATENÇÃO: </h4>
+                    <h3><strong>ATENÇÃO:</strong> </h3>
 
-                        <h5 class="text-center" >O cadastro é restrito para pessoas
+                        <h3 class="text-center" ><strong>O cadastro é restrito para pessoas
                             autorizadas
-                            pela instituição, caso não tenha autorização, não tente efetuá-lo.</h5>
+                                pela instituição, caso não tenha autorização, não tente efetuá-lo.</strong></h3>
 
                 </div>
 

@@ -12,10 +12,25 @@ use App\Models\Usuario;
 
 class Usuarios
 {
-    public static function addUsuario($matricula, $nome, $email, $senha, $resenha, $adm){
-        $user = Usuario::create(['matricula'=>$matricula,'nome'=>$nome,'email'=>$email, 'senha'=>$senha, 'resenha'=>$resenha, 'adm'=>$adm]);
+    public static function create_usuario($matricula, $nome, $email, $senha, $resenha, $adm)
+    {
+
+        $user = Usuario::create([
+            'matricula' => $matricula,
+            'nome' => $nome,
+            'email' => $email,
+            'senha' => $senha,
+            'resenha' => $resenha,
+            'adm' => $adm
+        ]);
         return $user;
+    }
+
+    public static function return_usuario($email, $senha){
+        $user = Usuario::
     }
 }
 
-//https://code.tutsplus.com/pt/tutorials/using-illuminate-database-with-eloquent-in-your-php-app-without-laravel--cms-27247
+?>
+
+<!--//https://code.tutsplus.com/pt/tutorials/using-illuminate-database-with-eloquent-in-your-php-app-without-laravel--cms-27247-->
