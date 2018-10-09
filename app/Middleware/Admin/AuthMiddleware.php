@@ -13,11 +13,14 @@ class AuthMiddleware
 
     public function __invoke($request, $response, $next)
     {
-        if (!isset( $_SESSION[PREFIX . 'logado'] )){
+        if (!isset( $_SESSION["Usuario"] )){
+
             return $response->withRedirect(PAF . '/admin/login');
+
         }
 
         $response = $next($request, $response);
+
         return $response;
     }
 

@@ -8,18 +8,19 @@
 
 namespace App\Action\Admin;
 
-use Illuminate\Database\Capsule\Manager as DB;
 use App\Action\Action;
+use App\Controllers\Usuarios;
 
 class LoginAction extends Action
 {
-
     public function index($request, $response)
     {
-        if (isset($_SESSION[PREFIX . 'logado'])) {
-            //return $response->withRedirect(PAF . '/admin');
+        if (isset($_SESSION["Usuario"])) {
+
             return $this->view->render($response, '/admin');
+
         }
+
         return $this->view->render($response, 'admin/login/login.phtml');
     }
 
@@ -32,12 +33,11 @@ class LoginAction extends Action
 
         if ($email !== '' && $senha !== '') {
 
-            $user = $this->db->prepare("SELECT * FROM `ledoc_usuario` WHERE `email` = ?, `senha` = ?");
-            $user->execute(array($email, $senha));
+            $user = Usuarios::return_usuario($email);
 
-            if ($user->rowCount() > 0) {
+            if ($user) {
 
-                $_SESSION[PREFIX . 'logado'] = true;
+                $_SESSION["Usuario"] = $user;
                 return $response->withRedirect(PAF . '/admin');
 
             } else {

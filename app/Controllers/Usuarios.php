@@ -26,8 +26,12 @@ class Usuarios
         return $user;
     }
 
-    public static function return_usuario($email, $senha){
-        $user = Usuario::
+    public static function return_usuario($email)
+    {
+        $user = Usuario::where([
+            'email' => $email
+        ])->first();
+        return $user;
     }
 }
 
