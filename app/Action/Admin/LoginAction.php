@@ -37,8 +37,13 @@ class LoginAction extends Action
 
             if ($user) {
 
-                $_SESSION["Usuario"] = $user;
-                return $response->withRedirect(PAF . '/admin');
+                if(password_verify($senha, $user->senha)){
+                    $_SESSION["Usuario"] = $user;
+                    return $response->withRedirect(PAF . '/admin');
+                }else{
+                    $vars['erro'] = 'A senha está incorreta';
+                    return $this->view->render($response, 'admin/login/login.phtml', $vars);
+                }
 
             } else {
                 $vars['erro'] = 'Voce não possui cadastro no sistema';
