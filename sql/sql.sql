@@ -15,9 +15,7 @@ create table ledoc_usuario (
   updated_at timestamp,
   created_at timestamp
 );
-INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm)value ('1234567', '','','','', 'sim');
-INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm)value ('1234568', '','','','', 'nao');
-INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm)value ('1234569', '','','','', 'nao');
+INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm, updated_at, created_at)value ('1234567', '','','','', 'sim','','');
 
 create table ledoc_comunica (
   id int(7) not null auto_increment primary key,
@@ -25,7 +23,8 @@ create table ledoc_comunica (
   titulo  varchar(500) not null,
   imagem  varchar(200),
   texto  varchar(40000),
-  data_p date
+  updated_at timestamp,
+  created_at timestamp
 );
 
 create table ledoc_postagem (
@@ -33,6 +32,7 @@ create table ledoc_postagem (
   titulo  varchar(500) not null,
   imagem  varchar(200),
   video varchar (500),
+  link varchar(500),
   documento varchar (500),
   data date
 );
