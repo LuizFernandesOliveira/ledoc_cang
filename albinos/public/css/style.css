@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15/02/2018, 19:04:58
+    Author     : Luiz Fernandes de Oliveira
+*/
+
+ .bg_bg{
+    position: absolute;
+ }
+.img_fundo{
+    background-image: url("../../img/img_fundo.jpg");
+}
+ div.bg-dg{
+    background-image: url("../img/BG02.png");
+    background-repeat: no-repeat;
+    
+ }
+ div.imagemMenuFundo img#imgfundo{
+    margin-left: auto;
+    margin-right: auto;
+ }
+ /* estilo do menu lateral */
+ div#dis0, div#dis1, div#dis2, div#dis3, div#dis4{
+     display: none;
+ }
