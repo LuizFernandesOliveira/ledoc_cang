@@ -123,5 +123,13 @@ create table ledoc_projeto (
   data_fim date,
   participantes int
 );
+
+create table ledoc_estagio_docente_escola (
+  id int(11) not null primary key,
+  nome  varchar(500) not null,
+  endereco varchar (500),
+  ensino varchar (500),
+  imagem varchar(500)
+);
 */
 
