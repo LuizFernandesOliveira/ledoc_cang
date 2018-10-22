@@ -9,7 +9,8 @@ CREATE TABLE ledoc_docente (
 
 
 create table ledoc_usuario (
-  matricula varchar(14) not null primary key,
+  id int(10) not null auto_increment primary key, 
+  matricula varchar(14) not null,
   nome      varchar(50) not null,
   email     varchar(40) not null,
   senha     varchar(20) not null,
@@ -18,7 +19,7 @@ create table ledoc_usuario (
   updated_at timestamp,
   created_at timestamp
 );
-INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm, updated_at, created_at)value ('1234567', '','','','', 'sim','','');
+INSERT into ledoc_usuario(matricula, nome, email, senha, resenha, adm, updated_at, created_at)value ('1234567', '','','','', 'sim',null, null);
 
 create table ledoc_comunica (
   id int(7) not null auto_increment primary key,

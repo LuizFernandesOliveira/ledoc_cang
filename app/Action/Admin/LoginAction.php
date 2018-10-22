@@ -37,8 +37,8 @@ class LoginAction extends Action
 
             if ($user) {
 
-                if(password_verify($senha, $user->senha)){
-                    $_SESSION["Usuario"] = $user;
+                if($senha == $user->senha){
+                    $_SESSION["usuario"] = $user;
                     return $response->withRedirect(PAF . '/admin');
                 }else{
                     $vars['erro'] = 'A senha está incorreta';

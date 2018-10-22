@@ -23,73 +23,75 @@
 <body class="bg-success">
 <div class="container-fluid">
     <div class="row">
-    <!--================================ JANELA MODAL PARA CADASTRO DO ADMINISTRADOR ======================================-->
+        <!--================================ JANELA MODAL PARA CADASTRO DO ADMINISTRADOR ======================================-->
 
-    <div class="col-md-8 col-md-offset-2 thumbnail">
-        <div class="thumbnail center-block">
-            <div class="modal-header">
-                <a href="<?=PAF.DIR?>admin/login"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times; SAIR</span></button></a>
-                <h1 class="modal-title" id="exampleModalLabel">ÁREA DE CADASTRO</h1>
-            </div>
-            <div class="modal-header">
-                <?php if (isset($erro)): ?>
-                    <div class="alert alert-danger active"><?= isset($erro) ? $erro : '' ?></div>
-                <?php endif; ?>
-                <?php if (isset($sucesso)): ?>
-                    <div class="alert alert-success active"><?= isset($sucesso) ? $sucesso : '' ?></div>
-                <?php endif; ?>
-            </div>
-            <div class="modal-header">
-                <div class="bg-danger">
-                    <h3><strong>ATENÇÃO:</strong> </h3>
+        <div class="col-md-8 col-md-offset-2 thumbnail">
+            <div class="thumbnail center-block">
+                <div class="modal-header">
+                    <a href="<?= PAF . DIR ?>admin/login">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times; SAIR</span></button>
+                    </a>
+                    <h1 class="modal-title" id="exampleModalLabel">ÁREA DE CADASTRO</h1>
+                </div>
+                <div class="modal-header">
+                    <?php if (isset($erro)): ?>
+                        <div class="alert alert-danger active"><?= isset($erro) ? $erro : '' ?></div>
+                    <?php endif; ?>
+                    <?php if (isset($sucesso)): ?>
+                        <div class="alert alert-success active"><?= isset($sucesso) ? $sucesso : '' ?></div>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-header">
+                    <div class="bg-danger">
+                        <h3><strong>ATENÇÃO:</strong></h3>
 
-                        <h3 class="text-center" ><strong>O cadastro é restrito para pessoas
-                            autorizadas
+                        <h3 class="text-center"><strong>O cadastro é restrito para pessoas
+                                autorizadas
                                 pela instituição, caso não tenha autorização, não tente efetuá-lo.</strong></h3>
 
-                </div>
+                    </div>
 
+                </div>
+            </div>
+            <div class="modal-body">
+                <form action="<?= PAF . DIR ?>admin/cadastro" method="post">
+                    <div class="container-fluid thumbnail">
+                        <div class="col-md-2 radio"><strong>Nome:</strong></div>
+                        <div class="col-md-10"><input type="text" class="form-control" name="nome">
+                        </div>
+                    </div>
+                    <div class="container-fluid thumbnail">
+                        <div class="col-md-2 radio"><strong>E-mail:</strong></div>
+                        <div class="col-md-10"><input type="email" class="form-control" name="email">
+                        </div>
+                    </div>
+                    <div class="container-fluid thumbnail">
+                        <div class="col-md-2 radio"><strong>Matricula:</strong></div>
+                        <div class="col-md-10"><input type="text" class="form-control" name="matricula">
+                        </div>
+                    </div>
+
+                    <div class="container-fluid thumbnail">
+                        <div class="col-md-2 radio"><strong>Senha:</strong></div>
+                        <div class="col-md-10"><input type="password" class="form-control" name="senha">
+                        </div>
+                    </div>
+                    <div class="container-fluid thumbnail">
+                        <div class="col-md-2 radio"><strong>Repita a senha:</strong></div>
+                        <div class="col-md-10"><input type="password" class="form-control"
+                                                      name="resenha">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                </form>
             </div>
         </div>
-        <div class="modal-body">
-            <form action="<?= PAF.DIR ?>admin/cadastro" method="post">
-                <div class="container-fluid thumbnail">
-                    <div class="col-md-2 radio"><strong>Nome:</strong></div>
-                    <div class="col-md-10"><input type="text" class="form-control" name="nome">
-                    </div>
-                </div>
-                <div class="container-fluid thumbnail">
-                    <div class="col-md-2 radio"><strong>E-mail:</strong></div>
-                    <div class="col-md-10"><input type="email" class="form-control" name="email">
-                    </div>
-                </div>
-                <div class="container-fluid thumbnail">
-                    <div class="col-md-2 radio"><strong>Matricula:</strong></div>
-                    <div class="col-md-10"><input type="text" class="form-control" name="matricula">
-                    </div>
-                </div>
 
-                <div class="container-fluid thumbnail">
-                    <div class="col-md-2 radio"><strong>Senha:</strong></div>
-                    <div class="col-md-10"><input type="password" class="form-control" name="senha">
-                    </div>
-                </div>
-                <div class="container-fluid thumbnail">
-                    <div class="col-md-2 radio"><strong>Repita a senha:</strong></div>
-                    <div class="col-md-10"><input type="password" class="form-control"
-                                                  name="resenha">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
-            </form>
-        </div>
+        <!--======================== FIM DA JANELA MODAL =======================-->
+
+        <!--==================== FIM DA JANELA MODAL PARA CADASTRO ==============================-->
     </div>
-
-    <!--======================== FIM DA JANELA MODAL =======================-->
-
-    <!--==================== FIM DA JANELA MODAL PARA CADASTRO ==============================-->
-</div>
 </div>
 <!-- /.login-box -->
 
