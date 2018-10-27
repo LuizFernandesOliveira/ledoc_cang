@@ -15,7 +15,8 @@ class LoginAction extends Action
 {
     public function index($request, $response)
     {
-        if (isset($_SESSION["Usuario"])) {
+        if (isset($_SESSION["usuario"])) {
+
 
             return $this->view->render($response, '/admin');
 
@@ -37,10 +38,10 @@ class LoginAction extends Action
 
             if ($user) {
 
-                if($senha == $user->senha){
+                if ($senha == $user->senha) {
                     $_SESSION["usuario"] = $user;
                     return $response->withRedirect(PAF . '/admin');
-                }else{
+                } else {
                     $vars['erro'] = 'A senha está incorreta';
                     return $this->view->render($response, 'admin/login/login.phtml', $vars);
                 }
