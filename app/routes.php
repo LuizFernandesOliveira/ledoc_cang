@@ -15,12 +15,12 @@ $app->get('/estagios_docente', 'App\Action\HomeAction:estagiosDocente');
 $app->get('/trabalhos', 'App\Action\HomeAction:trabalhos');
 $app->get('/projetos', 'App\Action\HomeAction:projetos');
 $app->get('/equipe', 'App\Action\HomeAction:equipe');
-$app->get('/admin/cadastro', 'App\Action\Admin\CadastroAction:cadastro');
-$app->post('/admin/cadastro', 'App\Action\Admin\CadastroAction:addUsuario');
+$app->get('/admin/cadastro', 'App\Action\Admin\UsuarioAction:pagCadastro');
+$app->post('/admin/cadastro', 'App\Action\Admin\UsuarioAction:addUsuario');
 
 $app->group('/admin', function(){
-	$this->get('', 'App\Action\Admin\HomeAction:index');
 
+	$this->get('', 'App\Action\Admin\HomeAction:index');
 	//POSTS
 	$this->get('/posts', 'App\Action\Admin\PostAction:index');
 	$this->get('/posts/add', 'App\Action\Admin\PostAction:add');
@@ -30,6 +30,6 @@ $app->group('/admin', function(){
 
 })->add(App\Middleware\Admin\AuthMiddleware::class);
 
-$app->get('/admin/login', 'App\Action\Admin\LoginAction:index');
-$app->post('/admin/login', 'App\Action\Admin\LoginAction:logar');
-$app->get('/admin/logout', 'App\Action\Admin\LoginAction:logout');
+$app->get('/admin/login', 'App\Action\Admin\UsuarioAction:index');
+$app->post('/admin/login', 'App\Action\Admin\UsuarioAction:logar');
+$app->get('/admin/logout', 'App\Action\Admin\UsuarioAction:logout');

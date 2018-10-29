@@ -11,10 +11,12 @@ use App\Action\Action;
 class HomeAction extends Action
 {
     public function index($request, $response){
-        if(isset($_SESSION['usuario'])) {
+        if(isset($_SESSION["usuario"])) {
+
             $vars['page'] = 'home';
-            $vars['nome'] = $_SESSION["usuario"];
+            $vars['usuario'] = $_SESSION["usuario"][0];
             return $this->view->render($response, 'admin/index.phtml', $vars);
+
         }
     }
 }

@@ -1,7 +1,10 @@
 <div class="content-wrapper">
-logou
+
 
     <?php
-    var_dump($_SESSION["usuario"]);
+    $usuario = $_SESSION["usuario"][0];
+    echo $usuario['nome'];
+
     ?>
+
 </div>
