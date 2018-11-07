@@ -10,6 +10,7 @@ namespace App\Action\Admin;
 
 use App\Action\Action;
 use App\BD\BD;
+use App\Action\Util;
 
 
 class UsuarioAction extends Action
@@ -33,7 +34,7 @@ class UsuarioAction extends Action
         $email = strip_tags(filter_var($data['email'], FILTER_SANITIZE_STRING));
         $senha = strip_tags(filter_var($data['senha'], FILTER_SANITIZE_STRING));
 
-        if ($this->verifyEmpty($email, $senha)) {
+        if (Util::verifyEmpty($email, $senha)) {
             $Sql = new BD();
             $user = $Sql->select("SELECT * FROM ledoc_usuario WHERE email = :EMAIL", array(
                 ":EMAIL" => $email
@@ -59,7 +60,7 @@ class UsuarioAction extends Action
         }
         return $this->view->render($response, 'admin/login/login.phtml', $vars);
     }
-    
+
     public function logout($request, $response)
     {
         unset($_SESSION["usuario"]);
@@ -68,24 +69,25 @@ class UsuarioAction extends Action
 
     }
 
-    public function pagCadastro($request, $response){
+    public function pagCadastro($request, $response)
+    {
         return $this->view->render($response, 'admin/login/cadastro.phtml');
 
     }
-    
+
     public function addUsuario($request, $response)
     {
         $data = $request->getParsedBody();
-        $matricula  = strip_tags(filter_var($data['matricula'], FILTER_SANITIZE_STRING));
-        $nome       = strip_tags(filter_var($data['nome'], FILTER_SANITIZE_STRING));
-        $email      = strip_tags(filter_var($data['email'], FILTER_SANITIZE_STRING));
-        $senha      = strip_tags(filter_var($data['senha'], FILTER_SANITIZE_STRING));
-        $resenha    = strip_tags(filter_var($data['resenha'], FILTER_SANITIZE_STRING));
-        $adm        = "nao";
+        $matricula = strip_tags(filter_var($data['matricula'], FILTER_SANITIZE_STRING));
+        $nome = strip_tags(filter_var($data['nome'], FILTER_SANITIZE_STRING));
+        $email = strip_tags(filter_var($data['email'], FILTER_SANITIZE_STRING));
+        $senha = strip_tags(filter_var($data['senha'], FILTER_SANITIZE_STRING));
+        $resenha = strip_tags(filter_var($data['resenha'], FILTER_SANITIZE_STRING));
+        $adm = "nao";
         /* */
         $add_usuario = new BD();
 
-        if(!$add_usuario){
+        if (!$add_usuario) {
             $vars['erro'] = 'Voce não possui cadastro no sistema';
             return $this->view->render($response, 'admin/login/cadastro.phtml', $vars);
         }
@@ -95,7 +97,8 @@ class UsuarioAction extends Action
 
     }
 
-    public function cadastro($request, $response){
+    public function cadastro($request, $response)
+    {
         return $this->view->render($response, 'admin/login/cadastro.phtml');
 
     }
@@ -104,14 +107,14 @@ class UsuarioAction extends Action
     public function consultaUsuario($request, $response)
     {
         $data = $request->getParsedBody();
-        $matricula  = strip_tags(filter_var($data['matricula'], FILTER_SANITIZE_STRING));
+        $matricula = strip_tags(filter_var($data['matricula'], FILTER_SANITIZE_STRING));
 
         if ($this->verifyEmpty($matricula)) {
             $bd = new BD();
             $db = $bd->select("SELECT * FROM ledoc_usuario WHERE matricula = :MATRICULA", array(
                 ":MATRICULA" => $matricula
             ));
-            if(!$db){
+            if (!$db) {
                 $vars['erro'] = 'Não existe esse usuario';
                 return $this->view->render($response, 'admin/login/cadastro.phtml', $vars);
             }
@@ -129,16 +132,35 @@ class UsuarioAction extends Action
     private $msgs;
 
     //atualizaCadastro pq a matricula já está no banco
-    public function atualizaUsuario($nome, $email, $senha, $resenha, $matricula, $adm)
+    public function atualizaUsuario($request, $response)
     {
-        if($senha != $resenha){
-            $this->msg = "As senhas adicionadas não são igual, por favor, redigite-as";
-            return $this->msg;
+        $data = $request->getParsedBody();
+
+        $nome = strip_tags(filter_var($data['nome'], FILTER_SANITIZE_STRING));
+        $email = strip_tags(filter_var($data['email'], FILTER_SANITIZE_STRING));
+        $senha = strip_tags(filter_var($data['senha'], FILTER_SANITIZE_STRING));
+        $resenha = strip_tags(filter_var($data['resenha'], FILTER_SANITIZE_STRING));
+        $matricula = strip_tags(filter_var($data['matricula'], FILTER_SANITIZE_STRING));
+
+        $Sql = new BD();
+        $user = $Sql->select("SELECT * FROM ledoc_usuario WHERE matricula = :MATRICULA", array(
+            ":MATRICULA" => $matricula
+        ));
+
+        if($user){
+            $adm = "sim";
+        }else{
+            $adm = "nao";
         }
 
-        if (Utils::verifyEmpty($nome, $email, $senha, $resenha, $matricula)) {
 
-            $Sql = new BD();
+        if (Util::verifyEmpty($nome, $email, $senha, $resenha, $matricula)) {
+
+            if ($senha != $resenha) {
+                $this->msg = "As senhas adicionadas não são igual, por favor, redigite-as";
+                return $this->msg;
+            }
+
             $result = $Sql->query("UPDATE ledoc_usuario SET nome = :NOME, email = :EMAIL, senha = :SENHA, resenha = :RESENHA, adm = :ADM  WHERE ledoc_usuario.matricula = :MATRICULA", array(
                 ':NOME' => $nome,
                 ':EMAIL' => $email,
@@ -177,7 +199,6 @@ class UsuarioAction extends Action
     }
 
 
-
     //deleta usuario
     public function deletaUsuario($matricula)
     {
@@ -193,10 +214,6 @@ class UsuarioAction extends Action
 
     }
 
-
-
-
-    
 
     public function insereUsuario($matricula)
     {
@@ -214,12 +231,12 @@ class UsuarioAction extends Action
         $user = new Usuario();
         $results = $user->consultaUsuario($matricula);
 
-        if($results){
+        if ($results) {
 
             $this->msg = "A MATRICULA INSERIDA JÁ FOI ADICIONADA";
             return $this->msg;
 
-        }else{
+        } else {
 
             $Sql = new Sql();
             $result = $Sql->query("INSERT INTO ledoc_usuario(matricula, nome, email, senha, resenha) VALUES (:MATRICULA,'','','','');", array(
@@ -235,11 +252,10 @@ class UsuarioAction extends Action
         }
 
 
-
-
     }
 
-    public function seachUsuarios(){
+    public function seachUsuarios()
+    {
 
         $Sql = new Sql();
         $results = $Sql->select("SELECT * FROM ledoc_usuario");
@@ -247,16 +263,5 @@ class UsuarioAction extends Action
 
     }
 
-    public static function verifyEmpty(...$fields)
-    {
-        $verified = true;
-        foreach ($fields as $field) {
-            //se existir algum campo vazio já retorna false
-            if (empty($field)) {
-                $verified = false;
-                break;
-            }
-        }
-        return $verified;
-    }
+
 }
